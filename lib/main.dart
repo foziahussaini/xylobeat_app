@@ -5,113 +5,144 @@ void main() {
   runApp(const XylophoneApp());
 }
 
-class XylophoneApp extends StatelessWidget {
+class XylophoneApp extends StatefulWidget {
   const XylophoneApp({super.key});
+
+  @override
+  State<XylophoneApp> createState() => _XylophoneAppState();
+}
+
+class _XylophoneAppState extends State<XylophoneApp> {
+  double sizedBox = 10;
+  double width = 310;
+  double height = 60;
+  EdgeInsets padding = EdgeInsets.symmetric(horizontal: 42, vertical: 2,);
+  void onLetterTap(String letter){
+    setState(() {
+      AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/$letter.wav"),);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.blueGrey[500],
-        body: Column(mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row( mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 300,
-                  height: 60,
-                  padding: EdgeInsets.symmetric(horizontal: 42, vertical: 2,),
-                  margin: EdgeInsets.only(top: 6, left: 30, right: 30, bottom: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.green[200]),
-                  child: Text("A 🎵🎶",style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.white),),)
-              ],
-            ),
-            SizedBox(height: 14,),
-            Row(mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/A.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    color: Colors.white,
-                    child: Text("A \n🎶", style: TextStyle(fontSize: 30, color: Colors.black),),
-                  ),
+        backgroundColor: Colors.blueGrey[100],
+        body: Center(
+          child: SizedBox(
+            width: 300,
+            height: 540,
+            child: Card(
+              elevation: 24,
+              color: Colors.brown.withOpacity(0.02),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12),),
+                child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // first row
+                        GestureDetector(
+                          onTap: (){
+                            onLetterTap("A");},
+                          child: Container(
+                            width: width,
+                            height: height,
+                            padding: padding,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                            color: Colors.red[900],),
+                            child: Text("A 🎶", style: TextStyle(fontSize: 30, color: Colors.white),),),
+                        ),
+                    // second row
+                    SizedBox(height: sizedBox,),
+                        GestureDetector(
+                          onTap: (){
+                            onLetterTap("B");},
+                          child: Container(
+                            width: width,
+                            height: height,
+                            padding: padding,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                            color: Colors.green,),
+                            child: Text("B 🎶", style: TextStyle(fontSize: 30, color: Colors.white),),),
+                        ),
+                    // 3rd row
+                    SizedBox(height: sizedBox,),
+                    GestureDetector(
+                      onTap: (){
+                        onLetterTap("C");},
+                      child: Container(
+                        width: width,
+                        height: height,
+                        padding: padding,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                        color: Colors.blue,),
+                        child: Text("C  🎶", style: TextStyle(fontSize: 30, color: Colors.white),),),
+                    ),
+                    // fourth row
+                    SizedBox(height: sizedBox,),
+                        GestureDetector(
+                          onTap: (){
+                            onLetterTap("D");
+                          },
+                          child: Container(
+                            width: width,
+                            height: height,
+                            padding: padding,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                            color: Colors.yellowAccent,),
+                            child: Text("D  🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
+                          ),
+                        ),
+                        // 5th row
+                    SizedBox(height: sizedBox,),
+                    GestureDetector(
+                      onTap: (){
+                        onLetterTap("E");
+                      },
+                      child: Container(
+                        width: width,
+                        height: height,
+                        padding: padding,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                        color: Colors.deepOrange,),
+                        child: Text("E 🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
+                      ),
+                    ),
+                        // 6th row
+                    SizedBox(height: sizedBox,),
+                    GestureDetector(
+                      onTap: (){
+                        onLetterTap("F");
+                      },
+                      child: Container(
+                        width: width,
+                        height: height,
+                        padding: padding,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                        color: Colors.purple,),
+                        child: Text("F 🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
+                      ),
+                    ),
+                        // 7th row
+                    SizedBox(height: sizedBox,),
+                    GestureDetector(
+                      onTap: (){
+                        onLetterTap("G");
+                      },
+                      child: Container(
+                        width: width,
+                        height: height,
+                        padding: padding,
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                          color: Colors.deepPurple,),
+                        child: Text("G 🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(width: 8,),
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/B.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    color: Colors.black,
-                    child: Text("B \n🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
-                  ),
-                ),
-                SizedBox(width: 8,),
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/C.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    color: Colors.white,
-                    child: Text("C \n🎵", style: TextStyle(fontSize: 26),),
-                  ),
-                ),
-                SizedBox(width: 8,),
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/D.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    color: Colors.black,
-                    child: Text("D \n🎶", style: TextStyle(fontSize: 30, color: Colors.white),),
-                  ),
-                ),
-                SizedBox(width: 8,),
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/D.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    color: Colors.white,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    child: Text("E \n🎵", style: TextStyle(fontSize: 25),),
-                  ),
-                ),
-                SizedBox(width: 8,),
-                GestureDetector(
-                  onTap: (){
-                    AssetsAudioPlayer.newPlayer().open(Audio("assets/audio/E.wav"),);
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 180,
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 50,),
-                    color: Colors.black,
-                    child: Text("F \n🎵", style: TextStyle(fontSize: 25, color: Colors.white),),
-                  ),
-                ),
-              ],
-            )
-          ],
-        ),),
+              ),
+          ),
+        ),
+      ),
     );
   }
 }
